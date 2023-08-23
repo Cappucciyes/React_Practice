@@ -22,3 +22,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# My testing file
+testJavaScript.js
+
+# Possibly sensitive data
+src/data/*
