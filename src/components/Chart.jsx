@@ -1,4 +1,5 @@
 import Task from "./Task";
+import ToolBar from "./ToolBar";
 
 function Chart() {
   let timeChart = [];
@@ -21,42 +22,44 @@ function Chart() {
   }
   return (
     <>
-      <div className="flex-column h-5/6 w-11/12 ">
-        {/* top part of chart */}
-        <div
-          className="grid grid-cols-6 w-full 
+      <div className="flex flex-col w-full h-screen items-center">
+        <div className="flex-column h-[85%] w-[95%]">
+          {/* top part of chart */}
+          <div
+            className="grid grid-cols-6 w-full 
             h-[5%]
             border-2 border-solid border-black"
-        >
-          <div className="text-center">days</div>
-          <div className="text-center">1</div>
-          <div className="text-center">2</div>
-          <div className="text-center">3</div>
-          <div className="text-center">4</div>
-          <div className="text-center">5</div>
-        </div>
+          >
+            <div className="text-center">days</div>
+            <div className="text-center">1</div>
+            <div className="text-center">2</div>
+            <div className="text-center">3</div>
+            <div className="text-center">4</div>
+            <div className="text-center">5</div>
+          </div>
 
-        {/* Task list of chart */}
-        <div
-          className="grid grid-cols-6 w-full 
+          {/* Task list of chart */}
+          <div
+            className="grid grid-cols-6 w-full 
             h-[20%] 
             border-2 border-solid border-gray-600 bg-gray-400"
-        >
-          <div className="text-center">Tasks</div>
-          <Task />
-        </div>
+          >
+            <div className="text-center">Tasks</div>
+            <Task />
+          </div>
 
-        {/* Time Table of chart */}
-        <div
-          className="border-2 border-black overflow-hidden flex flex-col
+          {/* Time Table of chart */}
+          <div
+            className="border-2 border-black overflow-y-scroll flex flex-col
             h-[75%]"
-        >
-          <div className="overflow-scroll flex h-full">
+          >
             <div className="grid grid-cols-6 w-full">
               <div className="flex-col flex w-full">{timeChart}</div>
             </div>
           </div>
         </div>
+
+        <ToolBar />
       </div>
     </>
   );
