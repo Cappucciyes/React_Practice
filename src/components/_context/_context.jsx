@@ -36,9 +36,6 @@ function tasksReducer(tasks, action) {
     case "delete": {
       return tasks;
     }
-    case "count": {
-      return tasks;
-    }
     case "search": {
       return tasks;
     }
