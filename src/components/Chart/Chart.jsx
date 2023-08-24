@@ -1,5 +1,5 @@
 import Task from "./Task";
-import ToolBar from "./ToolBar";
+import ToolBar from "../ToolBar/ToolBar";
 
 function Chart() {
   let timeChart = [];
