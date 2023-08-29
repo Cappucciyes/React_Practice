@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { TasksContext } from "../_context/_context";
 
 function Task() {
+  console.log("loaded");
   let taskList = useContext(TasksContext);
   let result = [];
 
@@ -17,19 +18,31 @@ function Task() {
 
       for (let i in taskList[day]) {
         dayTask.push(
-          <li key={taskList[day][i]["id"]}>{taskList[day][i]["body"]}</li>
+          <li key={taskList[day][i]["id"]}>
+            <div className="group relative">
+              <p className="py-3">{taskList[day][i]["body"]}</p>
+
+              <div
+                className="hidden group-hover:flex flex-col justify-center
+                absolute right-0 top-0 bottom-0
+                w-min h-full
+                "
+              >
+                <button className="bg-blue-400">Edit</button>
+                <button className="bg-red-600">Delete</button>
+              </div>
+            </div>
+          </li>
         );
       }
 
       result.push(
         <div className="overflow-y-auto h-full" key={day}>
-          <ul className="list-disc list-inside">{dayTask}</ul>
+          <ul className="">{dayTask}</ul>
         </div>
       );
     }
   }
-
-  console.log(result);
 
   return <>{result}</>;
 }

@@ -1,6 +1,5 @@
 import { useReducer, createContext } from "react";
-import taskJSON from "../../data/task.json";
-import CreateTaskForm from "../Forms/CreateTaskForm";
+import taskJSON from "../../data/task";
 
 const TasksContext = createContext(null); // initialize context of TaskContext
 const TasksDispatchContext = createContext(null); // initialize context of TaskDispatchContext
@@ -28,7 +27,15 @@ const TASKSACTION = {
 function tasksReducer(tasks, action) {
   switch (action.type) {
     case "create": {
-      return tasks;
+      let newTask = {
+        ...tasks,
+        [action.newTaskInfo.date]: [
+          ...tasks[action.newTaskInfo.date],
+          action.newTaskInfo.newtask,
+        ],
+      };
+
+      return newTask;
     }
     case "change": {
       return tasks;
