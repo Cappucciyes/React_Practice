@@ -18,7 +18,7 @@ function TaskContextBundle({ children }) {
 
 const TASKSACTION = {
   CREATE: "create",
-  CHANGE: "change",
+  EDIT: "edit",
   DELETE: "delete",
   COUNT: "count",
   SEARCH: "search",
@@ -37,8 +37,25 @@ function tasksReducer(tasks, action) {
 
       return newTask;
     }
-    case "change": {
-      return tasks;
+    case "edit": {
+      let [oldDate, newDate, updatedTask] = [
+        action.updateInfo.oldDate,
+        action.updateInfo.newDate,
+        action.updateInfo.updatedTask,
+      ];
+
+      let updatedTaskList = {
+        ...tasks,
+        [oldDate]: [...tasks[oldDate]],
+        [newDate]: [...tasks[newDate]],
+      };
+
+      updatedTaskList[oldDate] = updatedTaskList[oldDate].filter(
+        (task) => task.id != updatedTask.id
+      );
+
+      updatedTaskList[newDate].push(updatedTask);
+      return updatedTaskList;
     }
     case "delete": {
       return tasks;

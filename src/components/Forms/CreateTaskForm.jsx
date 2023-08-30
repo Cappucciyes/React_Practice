@@ -8,9 +8,9 @@ function createTaskForm({ isFormOpen, setIsFormOpen }) {
   function handleSubmit(submitEvent) {
     // Prevent the browser from reloading the page
     submitEvent.preventDefault();
-    let formData = new FormData(submitEvent.target);
+    let formData = new FormData(submitEvent.target); // Read the form data
 
-    let formObject = Object.fromEntries(formData.entries());
+    let formObject = Object.fromEntries(formData.entries()); //Change read data to a plain object:
 
     let newTaskInfo = {
       date: formObject.date,
