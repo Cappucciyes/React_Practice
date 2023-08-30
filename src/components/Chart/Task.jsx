@@ -1,9 +1,11 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
+import EditButton from "../ToolBar/EditButton";
 import { TasksContext } from "../_context/_context";
 
 function Task() {
   console.log("loaded");
   let taskList = useContext(TasksContext);
+
   let result = [];
 
   for (let day in taskList) {
@@ -14,28 +16,23 @@ function Task() {
         </div>
       );
     } else {
-      let dayTask = [];
+      let dayTask = taskList[day].map((task) => {
+        <li key={task.id}>
+          <div className="group relative">
+            <p className="py-3">{task.body}</p>
 
-      for (let i in taskList[day]) {
-        dayTask.push(
-          <li key={taskList[day][i]["id"]}>
-            <div className="group relative">
-              <p className="py-3">{taskList[day][i]["body"]}</p>
-
-              <div
-                className="hidden group-hover:flex flex-col justify-center
+            <div
+              className="hidden group-hover:flex flex-col justify-center
                 absolute right-0 top-0 bottom-0
                 w-min h-full
                 "
-              >
-                <button className="bg-blue-400">Edit</button>
-                <button className="bg-red-600">Delete</button>
-              </div>
+            >
+              <EditButton key={task.id} />
+              <button className="bg-red-600">Delete</button>
             </div>
-          </li>
-        );
-      }
-
+          </div>
+        </li>;
+      });
       result.push(
         <div className="overflow-y-auto h-full" key={day}>
           <ul className="">{dayTask}</ul>

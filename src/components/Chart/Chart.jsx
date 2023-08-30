@@ -1,7 +1,10 @@
 import Task from "./Task";
 import ToolBar from "../ToolBar/ToolBar";
+import { useContext } from "react";
+import { TasksContext } from "../_context/_context";
 
 function Chart() {
+  let taskList = useContext(TasksContext);
   let timeChart = [];
   for (let i = 0; i < 25; i++) {
     let timeBlock = (

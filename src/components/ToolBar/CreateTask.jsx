@@ -1,6 +1,6 @@
-import createTaskForm from "../Forms/createTaskForm";
+import CreateTaskForm from "../Forms/CreateTaskForm";
 import { TasksContext } from "../_context/_context";
-import { createRef, useContext, useState } from "react";
+import { useContext, useState } from "react";
 
 //New Task Button
 function createTask() {
@@ -8,7 +8,7 @@ function createTask() {
   let TaskList = useContext(TasksContext);
 
   let createForm = isFormOpen ? (
-    <createTaskForm isFormOpen={isFormOpen} setIsFormOpen={setFormOpen} />
+    <CreateTaskForm isFormOpen={isFormOpen} setIsFormOpen={setFormOpen} />
   ) : null;
 
   return (
