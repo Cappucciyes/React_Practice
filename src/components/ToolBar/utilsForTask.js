@@ -1,3 +1,6 @@
+
+
+//function for searching task
 function findTask(taskList, key) {
     for (let date in taskList) {
         for (let task in taskList[date]) {
@@ -11,4 +14,15 @@ function findTask(taskList, key) {
     }
 }
 
-export {findTask}
+//function for counting tasks
+function countTask(list) {
+    let totalCount = 0;
+  
+    for (let day in list) {
+      totalCount += list[day].length;
+    }
+  
+    return totalCount;
+  }
+
+export {findTask, countTask}

@@ -1,11 +1,10 @@
 import CreateTaskForm from "../Forms/CreateTaskForm";
-import { TasksContext } from "../_context/_context";
-import { useContext, useState } from "react";
+import { countTask } from "./utilsForTask";
+import { useState } from "react";
 
 //New Task Button
 function createTask() {
   let [isFormOpen, setFormOpen] = useState(false);
-  let TaskList = useContext(TasksContext);
 
   let createForm = isFormOpen ? (
     <CreateTaskForm isFormOpen={isFormOpen} setIsFormOpen={setFormOpen} />
@@ -22,21 +21,10 @@ function createTask() {
         onClick={() => setFormOpen(!isFormOpen)}
       >
         <p>New</p>
-        <p className="font-light">Current: {countTask(TaskList)} tasks</p>
+        <p className="font-light">Current: {countTask()} tasks</p>
       </button>
     </>
   );
-}
-
-//function for counting tasks
-function countTask(list) {
-  let totalCount = 0;
-
-  for (let day in list) {
-    totalCount += list[day].length;
-  }
-
-  return totalCount;
 }
 
 export default createTask;

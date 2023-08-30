@@ -20,8 +20,6 @@ const TASKSACTION = {
   CREATE: "create",
   EDIT: "edit",
   DELETE: "delete",
-  COUNT: "count",
-  SEARCH: "search",
 };
 
 function tasksReducer(tasks, action) {
@@ -58,10 +56,17 @@ function tasksReducer(tasks, action) {
       return updatedTaskList;
     }
     case "delete": {
-      return tasks;
-    }
-    case "search": {
-      return tasks;
+      let [date, id] = [action.targetTask.date, action.targetTask.task.id];
+      let updatedTask = {
+        ...tasks,
+        [date]: [...tasks[date]],
+      };
+
+      console.log(updatedTask[date]);
+
+      updatedTask[date] = updatedTask[date].filter((task) => task.id != id);
+
+      return updatedTask;
     }
     default: {
       throw Error("Unknown action: " + action.type);
