@@ -1,5 +1,3 @@
-
-
 //function for searching task
 function findTask(taskList, key) {
     for (let date in taskList) {

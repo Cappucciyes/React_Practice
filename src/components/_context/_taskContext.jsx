@@ -48,11 +48,20 @@ function tasksReducer(tasks, action) {
         [newDate]: [...tasks[newDate]],
       };
 
-      updatedTaskList[oldDate] = updatedTaskList[oldDate].filter(
-        (task) => task.id != updatedTask.id
-      );
+      if (oldDate != newDate) {
+        updatedTaskList[oldDate] = updatedTaskList[oldDate].filter(
+          (task) => task.id != updatedTask.id
+        );
 
-      updatedTaskList[newDate].push(updatedTask);
+        updatedTaskList[newDate].push(updatedTask);
+      } else {
+        updatedTaskList[newDate][
+          updatedTaskList[newDate].findIndex(
+            (task) => task.id == updatedTask.id
+          )
+        ] = updatedTask;
+      }
+
       return updatedTaskList;
     }
     case "delete": {

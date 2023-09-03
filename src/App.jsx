@@ -1,15 +1,18 @@
 import Chart from "./components/Chart/Chart";
-import { TaskContextBundle } from "./components/_context/_context";
+import { TaskContextBundle } from "./components/_context/_taskContext";
+import { PlanContextBundle } from "./components/_context/_planContext";
 
 //Main App function
 function App() {
   return (
     <>
-      <TaskContextBundle>
-        <div className="h-screen w-full flex flex-row justify-center">
-          <Chart />
-        </div>
-      </TaskContextBundle>
+      <PlanContextBundle>
+        <TaskContextBundle>
+          <div className="h-screen w-full flex flex-row justify-center">
+            <Chart />
+          </div>
+        </TaskContextBundle>
+      </PlanContextBundle>
     </>
   );
 }

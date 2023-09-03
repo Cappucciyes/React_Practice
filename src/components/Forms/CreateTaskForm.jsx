@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { TASKSACTION, TasksDispatchContext } from "../_context/_context";
+import { TASKSACTION, TasksDispatchContext } from "../_context/_taskContext";
 import { createPortal } from "react-dom";
 
 function createTaskForm({ isFormOpen, setIsFormOpen }) {
@@ -61,6 +61,18 @@ function createTaskForm({ isFormOpen, setIsFormOpen }) {
             w-full px-5 py-2.5 text-center"
           >
             Submit
+          </button>
+
+          <button
+            type="button"
+            className="text-white bg-red-400 
+            hover:bg-red-600 
+            focus:ring-4 focus:outline-none focus:ring-blue-300 
+            font-medium rounded-lg text-sm 
+            w-full px-5 py-2.5 text-center mt-2"
+            onClick={() => setIsFormOpen(!isFormOpen)}
+          >
+            Cancel
           </button>
         </form>
       </div>

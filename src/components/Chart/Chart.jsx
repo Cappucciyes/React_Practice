@@ -1,24 +1,27 @@
 import Task from "./Task";
 import ToolBar from "../ToolBar/ToolBar";
+import TimeChart from "./TimeChart";
+import Plan from "./Plan";
 
 function Chart() {
-  let timeChart = [];
-  for (let i = 0; i < 25; i++) {
+  let labeledTimeChart = [];
+  for (let i = 0; i < 24; i++) {
     let timeBlock = (
       <div
         className="h-20
         flex flex-row "
       >
         <div className="flex-1 border-2 border-black text-center">{i}:00</div>
-        <div className="flex-1 bg-gray-400 border-t-2 border-b-2 border-gray-500">
-          <div className="border-b-2 border-gray-500 h-1/4"></div>
-          <div className="border-b-2 border-gray-500 h-1/4"></div>
-          <div className="border-b-2 border-gray-500 h-1/4"></div>
+        <div className="flex-1 bg-gray-400 border-gray-500">
+          <div className="border border-gray-500 h-1/4"></div>
+          <div className="border border-gray-500 h-1/4"></div>
+          <div className="border border-gray-500 h-1/4"></div>
+          <div className="border border-gray-500 h-1/4"></div>
         </div>
       </div>
     );
 
-    timeChart.push(timeBlock);
+    labeledTimeChart.push(timeBlock);
   }
   return (
     <>
@@ -37,7 +40,6 @@ function Chart() {
             <div className="text-center">4</div>
             <div className="text-center">5</div>
           </div>
-
           {/* Task list of chart */}
           <div
             className="grid grid-cols-6 w-full 
@@ -54,7 +56,12 @@ function Chart() {
             h-[75%]"
           >
             <div className="grid grid-cols-6 w-full">
-              <div className="flex-col flex w-full">{timeChart}</div>
+              {/*column with time labeled*/}
+              <div className="flex-col flex w-full">{labeledTimeChart}</div>
+              {/* columns that will show actual plans */}
+              <div className="col-start-2 col-span-5">
+                <TimeChart></TimeChart>
+              </div>
             </div>
           </div>
         </div>

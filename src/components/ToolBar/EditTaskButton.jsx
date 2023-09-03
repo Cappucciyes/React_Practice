@@ -1,9 +1,9 @@
 import EditTaskForm from "../Forms/EditTaskForm";
-import { TasksContext } from "../_context/_context";
+import { TasksContext } from "../_context/_taskContext";
 import { findTask } from "./utilsForTask";
 import { useState, useContext } from "react";
 
-function EditButton({ taskKey }) {
+function EditTaskButton({ taskKey }) {
   let [isOpen, setIsOpen] = useState(false);
   let taskList = useContext(TasksContext);
   let targetTaskInfo = findTask(taskList, taskKey);
@@ -25,4 +25,4 @@ function EditButton({ taskKey }) {
   );
 }
 
-export default EditButton;
+export default EditTaskButton;

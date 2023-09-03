@@ -1,9 +1,9 @@
 import { useContext, useState } from "react";
 import { findTask } from "./utilsForTask";
-import { TasksContext } from "../_context/_context";
+import { TasksContext } from "../_context/_taskContext";
 import DeleteTaskForm from "../Forms/DeleteTaskForm";
 
-function DeleteButton({ taskKey }) {
+function DeleteTaskButton({ taskKey }) {
   let taskList = useContext(TasksContext);
   let [isOpen, setIsOpen] = useState(false);
   let targetTaskInfo = findTask(taskList, taskKey);
@@ -25,4 +25,4 @@ function DeleteButton({ taskKey }) {
   );
 }
 
-export default DeleteButton;
+export default DeleteTaskButton;
