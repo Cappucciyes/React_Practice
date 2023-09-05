@@ -5,6 +5,8 @@ import {
   PlansDispatchContext,
   PlansColorContext,
 } from "../../_context/_planContext";
+
+import { TIMESTART, TIMEEND, PLANDAY } from "../../_planTimeCSS";
 import { createPortal } from "react-dom";
 
 function CreatePlanForm({ isFormOpen, setIsFormOpen }) {
@@ -77,6 +79,11 @@ function CreatePlanForm({ isFormOpen, setIsFormOpen }) {
       }
       //check if plan overlaps with plans that are already there
       for (let j in planContext) {
+        if (planContext[j].name == formObject.name) {
+          alert(`Already with the plan named "${formObject.name}"`);
+          return;
+        }
+
         for (let k in planContext[j].whenObject) {
           if (whenData[i].day == planContext[j].whenObject[k].day) {
             let [newPlanTime, oldPlanTime] = [
@@ -105,10 +112,10 @@ function CreatePlanForm({ isFormOpen, setIsFormOpen }) {
     }
 
     let when = whenData.map((whenInfo) => {
-      console.log(
-        `col-start-[${whenInfo.day}] row-start-[${whenInfo.start}] row-end-[${whenInfo.end}]`
-      );
-      return `col-start-[${whenInfo.day}] row-start-[${whenInfo.start}] row-end-[${whenInfo.end}]`;
+      // return `col-start-[${whenInfo.day}] row-start-[${whenInfo.start}] row-end-[${whenInfo.end}]`;
+      return `${PLANDAY[whenInfo.day]} ${TIMESTART[whenInfo.start]} ${
+        TIMEEND[whenInfo.end]
+      }`;
     });
 
     planDispatchContext({
