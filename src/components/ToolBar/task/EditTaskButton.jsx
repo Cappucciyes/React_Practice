@@ -1,5 +1,5 @@
-import EditTaskForm from "../Forms/EditTaskForm";
-import { TasksContext } from "../_context/_taskContext";
+import EditTaskForm from "../../Forms/task/EditTaskForm";
+import { TasksContext } from "../../_context/_taskContext";
 import { findTask } from "./utilsForTask";
 import { useState, useContext } from "react";
 

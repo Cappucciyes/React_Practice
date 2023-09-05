@@ -40,7 +40,13 @@ function TimeChart() {
   }
   return (
     <>
-      <div className="grid grid-cols-5 h-full">{timeChart}</div>
+      <div
+        className="grid grid-cols-5 h-full relative"
+        id="timeChartBackground"
+      >
+        {timeChart}
+        <Plan />
+      </div>
     </>
   );
 }

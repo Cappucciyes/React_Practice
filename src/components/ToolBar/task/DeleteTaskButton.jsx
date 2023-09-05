@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { findTask } from "./utilsForTask";
-import { TasksContext } from "../_context/_taskContext";
-import DeleteTaskForm from "../Forms/DeleteTaskForm";
+import { TasksContext } from "../../_context/_taskContext";
+import DeleteTaskForm from "../../Forms/task/DeleteTaskForm";
 
 function DeleteTaskButton({ taskKey }) {
   let taskList = useContext(TasksContext);

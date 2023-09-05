@@ -1,9 +1,11 @@
-import CreateTaskForm from "../Forms/CreateTaskForm";
+import CreateTaskForm from "../../Forms/task/CreateTaskForm";
+import { TasksContext } from "../../_context/_taskContext";
 import { countTask } from "./utilsForTask";
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 //New Task Button
 function createTask() {
+  let taskContext = useContext(TasksContext);
   let [isFormOpen, setFormOpen] = useState(false);
 
   let createForm = isFormOpen ? (
@@ -21,7 +23,7 @@ function createTask() {
         onClick={() => setFormOpen(!isFormOpen)}
       >
         <p>New</p>
-        <p className="font-light">Current: {countTask()} tasks</p>
+        <p className="font-light">Current: {countTask(taskContext)} tasks</p>
       </button>
     </>
   );

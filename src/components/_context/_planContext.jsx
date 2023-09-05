@@ -1,18 +1,22 @@
 import { useReducer, createContext } from "react";
 import planList from "../../data/plan";
+import { COLOR } from "../../data/plan";
 
 const PlansContext = createContext(null); // initialize context of planContext
 const PlansDispatchContext = createContext(null); // initialize context of PlanDispatchContext
+const PlansColorContext = createContext(null); // initialize context of PlanDispatchContext
 
 function PlanContextBundle({ children }) {
   const [plans, dispatch] = useReducer(plansReducer, planList);
 
   return (
-    <PlansContext.Provider value={plans}>
-      <PlansDispatchContext.Provider value={dispatch}>
-        {children}
-      </PlansDispatchContext.Provider>
-    </PlansContext.Provider>
+    <PlansColorContext.Provider value={COLOR}>
+      <PlansContext.Provider value={plans}>
+        <PlansDispatchContext.Provider value={dispatch}>
+          {children}
+        </PlansDispatchContext.Provider>
+      </PlansContext.Provider>
+    </PlansColorContext.Provider>
   );
 }
 
@@ -25,7 +29,10 @@ const PLANSACTION = {
 function plansReducer(plans, action) {
   switch (action.type) {
     case "create": {
-      return plans;
+      console.log(action.newPlan);
+      let updatePlan = [...plans, action.newPlan];
+
+      return updatePlan;
     }
     case "edit": {
       return plans;
@@ -39,4 +46,10 @@ function plansReducer(plans, action) {
   }
 }
 
-export { PlansContext, PlansDispatchContext, PLANSACTION, PlanContextBundle };
+export {
+  PlansContext,
+  PlansDispatchContext,
+  PLANSACTION,
+  PlansColorContext,
+  PlanContextBundle,
+};

@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { TASKSACTION, TasksDispatchContext } from "../_context/_taskContext";
+import { TASKSACTION, TasksDispatchContext } from "../../_context/_taskContext";
 import { createPortal } from "react-dom";
 
 function DeleteTaskForm({ taskInfo, isOpen, setIsOpen }) {

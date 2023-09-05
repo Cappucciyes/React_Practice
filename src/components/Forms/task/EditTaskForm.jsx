@@ -1,31 +1,31 @@
 import { useContext } from "react";
-import { TASKSACTION, TasksDispatchContext } from "../_context/_taskContext";
+import { TASKSACTION, TasksDispatchContext } from "../../_context/_taskContext";
 import { createPortal } from "react-dom";
 
-function createTaskForm({ isFormOpen, setIsFormOpen }) {
+function EditTaskForm({ taskInfo, isOpen, setIsOpen }) {
   let TaskDispatch = useContext(TasksDispatchContext);
 
-  function handleSubmit(submitEvent) {
-    // Prevent the browser from reloading the page
+  function onSubmit(submitEvent) {
     submitEvent.preventDefault();
-    let formData = new FormData(submitEvent.target); // Read the form data
+    let formData = new FormData(submitEvent.target);
 
-    let formObject = Object.fromEntries(formData.entries()); //Change read data to a plain object:
+    let formObject = Object.fromEntries(formData.entries());
 
-    let newTaskInfo = {
-      date: formObject.date,
-      newtask: {
-        id: Date.now(),
+    let updateInfo = {
+      oldDate: taskInfo.date,
+      newDate: formObject.date,
+      updatedTask: {
+        id: taskInfo.task.id,
         body: formObject.body,
       },
     };
 
     TaskDispatch({
-      type: TASKSACTION.CREATE,
-      newTaskInfo: newTaskInfo,
+      type: TASKSACTION.EDIT,
+      updateInfo: updateInfo,
     });
 
-    setIsFormOpen(!isFormOpen);
+    setIsOpen(!isOpen);
   }
 
   return createPortal(
@@ -35,10 +35,10 @@ function createTaskForm({ isFormOpen, setIsFormOpen }) {
         absolute top-0 left-0 right-0 bottom-0
       bg-opacity-75 bg-black"
       >
-        <form onSubmit={handleSubmit} className="bg-white p-10">
+        <form action="/" onSubmit={onSubmit} className="bg-white p-10">
           <div className="flex flex-col p-2">
             <p>Select which date: </p>
-            <select name="date" id="date" required>
+            <select name="date" id="date" defaultValue={taskInfo.date}>
               <option value="first">Day 1</option>
               <option value="second">Day 2</option>
               <option value="third">Day 3</option>
@@ -48,8 +48,13 @@ function createTaskForm({ isFormOpen, setIsFormOpen }) {
           </div>
 
           <div className="flex flex-col p-2" required>
-            <p>Write the task out: </p>
-            <input type="text" name="body" id="body" />
+            <p>Edit task: </p>
+            <input
+              type="text"
+              name="body"
+              id="body"
+              defaultValue={taskInfo.task.body}
+            />
           </div>
 
           <button
@@ -60,19 +65,7 @@ function createTaskForm({ isFormOpen, setIsFormOpen }) {
             font-medium rounded-lg text-sm 
             w-full px-5 py-2.5 text-center"
           >
-            Submit
-          </button>
-
-          <button
-            type="button"
-            className="text-white bg-red-400 
-            hover:bg-red-600 
-            focus:ring-4 focus:outline-none focus:ring-blue-300 
-            font-medium rounded-lg text-sm 
-            w-full px-5 py-2.5 text-center mt-2"
-            onClick={() => setIsFormOpen(!isFormOpen)}
-          >
-            Cancel
+            Edit
           </button>
         </form>
       </div>
@@ -81,4 +74,4 @@ function createTaskForm({ isFormOpen, setIsFormOpen }) {
   );
 }
 
-export default createTaskForm;
+export default EditTaskForm;

@@ -1,7 +1,6 @@
 import Task from "./Task";
 import ToolBar from "../ToolBar/ToolBar";
 import TimeChart from "./TimeChart";
-import Plan from "./Plan";
 
 function Chart() {
   let labeledTimeChart = [];

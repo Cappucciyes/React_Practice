@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
-import EditTaskButton from "../ToolBar/EditTaskButton";
+import EditTaskButton from "../ToolBar/task/EditTaskButton";
 import { TasksContext } from "../_context/_taskContext";
-import DeleteTaskButton from "../ToolBar/DeleteTaskButton";
+import DeleteTaskButton from "../ToolBar/task/DeleteTaskButton";
 
 function Task() {
   let taskList = useContext(TasksContext);
