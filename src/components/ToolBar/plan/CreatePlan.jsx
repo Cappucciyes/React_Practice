@@ -1,5 +1,5 @@
 import CreatePlanForm from "../../Forms/plan/CreatePlanForm";
-import { useState } from "react";
+import { useState, useContext } from "react";
 
 //New Task Button
 function CreatePlan() {
@@ -19,8 +19,7 @@ function CreatePlan() {
       text-white font-bold"
         onClick={() => setFormOpen(!isFormOpen)}
       >
-        <p>New</p>
-        <p className="font-light">Current: WIP</p>
+        <p>New Plan</p>
       </button>
     </>
   );

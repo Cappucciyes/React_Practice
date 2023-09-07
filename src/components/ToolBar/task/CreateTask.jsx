@@ -22,7 +22,7 @@ function createTask() {
       text-white font-bold"
         onClick={() => setFormOpen(!isFormOpen)}
       >
-        <p>New</p>
+        <p>New Task</p>
         <p className="font-light">Current: {countTask(taskContext)} tasks</p>
       </button>
     </>

@@ -1,0 +1,6 @@
+//function for searching plan
+function findPlan(planList, name) {
+    return planList.find((plan) => plan.name == name)
+}
+
+export {findPlan}

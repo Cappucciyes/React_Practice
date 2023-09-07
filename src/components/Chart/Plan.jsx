@@ -1,6 +1,8 @@
 import TimeChart from "./TimeChart";
 import { useContext } from "react";
 import { PlansContext } from "../_context/_planContext";
+import DeletePlanButton from "../ToolBar/plan/DeletePlanButton";
+import EditPlanButton from "../ToolBar/plan/EditPlanButton";
 
 function Plan() {
   let planList = [];
@@ -28,10 +30,18 @@ function Plan() {
         {planList.map((planData, index) => {
           return (
             <div
-              className={`${planData.color} ${planData.when}`}
+              className={`${planData.color} ${planData.when} group relative`}
               key={`plan:${planData.name}-${index}`}
             >
               {planData.name}
+              <div
+                className="hidden
+                group-hover:flex flex-row group-hover:absolute
+                right-0 top-0"
+              >
+                <DeletePlanButton planName={planData.name} />
+                <EditPlanButton planName={planData.name} />
+              </div>
             </div>
           );
         })}

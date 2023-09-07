@@ -61,8 +61,8 @@ function CreatePlanForm({ isFormOpen, setIsFormOpen }) {
         );
         return;
       }
-      //check if they over lap each other
 
+      //check if they over lap each other
       for (let j in whenData) {
         if (i == j) continue;
 
@@ -77,28 +77,34 @@ function CreatePlanForm({ isFormOpen, setIsFormOpen }) {
           }
         }
       }
+
       //check if plan overlaps with plans that are already there
       for (let j in planContext) {
+        // checks if plan with the same name already exists
         if (planContext[j].name == formObject.name) {
           alert(`Already with the plan named "${formObject.name}"`);
           return;
         }
 
-        for (let k in planContext[j].whenObject) {
-          if (whenData[i].day == planContext[j].whenObject[k].day) {
+        for (let k in planContext[j].whenObjects) {
+          if (whenData[i].day == planContext[j].whenObjects[k].day) {
             let [newPlanTime, oldPlanTime] = [
               whenData[i],
-              planContext[j].whenObject[k],
+              planContext[j].whenObjects[k],
             ];
             let overlap =
-              (newPlanTime.start < oldPlanTime.start &&
+              //start of old plan within new plan
+              (newPlanTime.start <= oldPlanTime.start &&
                 oldPlanTime.start < newPlanTime.end) ||
+              //end of old plan within new plan
               (newPlanTime.start < oldPlanTime.end &&
-                oldPlanTime.end < newPlanTime.end) ||
-              (oldPlanTime.start < newPlanTime.start &&
-                newPlanTime.end < oldPlanTime.end) ||
-              (oldPlanTime.start == newPlanTime.start &&
-                oldPlanTime.end == newPlanTime.end);
+                oldPlanTime.end <= newPlanTime.end) ||
+              //new plan within one of old plan
+              (oldPlanTime.start <= newPlanTime.start &&
+                newPlanTime.end <= oldPlanTime.end) ||
+              //one of old plan within new old plan
+              (newPlanTime.start <= oldPlanTime.start &&
+                oldPlanTime.end <= newPlanTime.end);
 
             if (overlap) {
               alert(
@@ -123,7 +129,7 @@ function CreatePlanForm({ isFormOpen, setIsFormOpen }) {
       newPlan: {
         name: formObject.name,
         when: when,
-        whenObject: whenData,
+        whenObjects: whenData,
         color: planColorContext[formObject.color],
       },
     });
